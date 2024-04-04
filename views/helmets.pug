@@ -2,7 +2,7 @@ extends layout
 
 block content
   h1= title
-  - let results = [{ style: 'Full Face', size: 'Medium', price: 100 },{ style: 'Open Face', size: 'Large', price: 80 }, { style: 'Modular', size: 'Small', price: 120 },{ style: 'Half Helmet', size: 'XL', price: 60 },{ style: 'Dual Sport', size: 'Large', price: 150 }]
+  - let items = results
   div(class="container-fluid")
     div(class="row")
       each item, index in results  
