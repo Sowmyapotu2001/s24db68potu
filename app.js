@@ -186,5 +186,5 @@ if (reseed) {recreateDB();
 //     });
 // }
 
-module.exports = app;
+module.exports = app ;
 
