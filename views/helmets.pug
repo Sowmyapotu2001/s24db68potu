@@ -1,39 +1,39 @@
-//- extends layout
-
-//- block content
-//-   h1= title
-//-   - let items = results
-//-   div(class="container-fluid")
-//-     div(class="row")
-//-       each item, index in results  
-//-         div(class="col-sm-2",onclick=`buy(${index})`)
-//-           p #{item.style} 
-//-           p #{item.size}
-//-           p #{item.price}
-
-//-   script.
-//-     console.log("shjgh");
-//-     function buy(index) {
-//-         console.log(index)
-//-         alert(' You purchased item ' + index);
-//-     }
-
-
 extends layout
 
 block content
   h1= title
   - let items = results
-  //- - let results = [{name: "Maldives", location: "South Asia", rating: 4.9},{name: "Bora Bora", location: "France", rating: 4.8},{name: "Maui", location: "USA", rating: 4.7}]
   div(class="container-fluid")
     div(class="row")
-      each item,index in results
-        div(class="col-sm-2")
-          h4 item #{index + 1}
-          p #{item.helmet-style} - #{item.size} - #{item.price}
-          div(onclick=`buy(${index})`, class="btn btn-primary") Buy
-  
-  script. 
+      each item, index in results  
+        div(class="col-sm-2",onclick=`buy(${index})`)
+          p #{item.helmet_stylex} 
+          p #{item.size}
+          p #{item.price}
+
+  script.
+    console.log("shjgh");
     function buy(index) {
-      alert(`You purchased item ${index + 1}`);
+        console.log(index)
+        alert(' You purchased item ' + index);
     }
+
+
+//- extends layout
+
+//- block content
+//-   h1= title
+//-   - let items = results
+//-   //- - let results = [{name: "Maldives", location: "South Asia", rating: 4.9},{name: "Bora Bora", location: "France", rating: 4.8},{name: "Maui", location: "USA", rating: 4.7}]
+//-   div(class="container-fluid")
+//-     div(class="row")
+//-       each item,index in results
+//-         div(class="col-sm-2")
+//-           h4 item #{index + 1}
+//-           p #{item.style} - #{item.size} - #{item.price}
+//-           div(onclick=`buy(${index})`, class="btn btn-primary") Buy
+  
+//-   script. 
+//-     function buy(index) {
+//-       alert(`You purchased item ${index + 1}`);
+//-     }
