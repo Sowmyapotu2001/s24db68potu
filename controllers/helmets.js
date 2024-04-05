@@ -97,7 +97,7 @@ exports.helmets_update_put = async function (req, res) {
         if (req.body.helmet_style)
             toUpdate.helmet_style = req.body.helmet_style;
         if (req.body.size) toUpdate.size = req.body.size;
-        if (req.body.price) toUpdate.rating = req.body.price;
+        if (req.body.price) toUpdate.price = req.body.price;
         let result = await toUpdate.save();
         console.log("Sucess " + result)
         res.send(result)
