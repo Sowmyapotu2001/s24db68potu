@@ -1,43 +1,46 @@
 extends layout
 
 block content
+ div(class="container-fluid p-5 bg-primary text-white text-center")
     h1= title
-    - let helmetsid = toShow._id
-    - let helmets_style = toShow.helmets_style
-    - let size = toShow.size
-    - let price = toShow.price
 
-    div.row(class='mb-2')
-        div.mr-1 ID is
-        div #{helmetsid}
-
-    - let actionid = "/resource/helmets/" + helmetsid
-    form(id='helmetsForm', action= actionid, method="PUT")
-        div.form-group
-            label.helmetsAttr(for='helmets_style') Bank Name 
-            input#helmets_style(type='text', name='helmets_style', value= helmets_style)
-        div.form-group
-            label.helmetsAttr(for='size') Bank Place 
-            input#size(type='text', name='size', value= size)
-        div.form-group
-            label.helmetsAttr(for='price') price
-            input#price(type='number', name='price', value= price)
-        input(type="submit")
-
-    script.
-        document.forms['helmetsForm'].addEventListener('submit', (event) => {
-            event.preventDefault();
-            // TODO do something here to show user that form is being submitted
-            fetch(event.target.action, {
-                method: 'PUT',
-                body: new URLSearchParams(new FormData(event.target)) // event.target is the form
-            }).then((resp) => {
-                return resp.json(); // or resp.text() or whatever the server sends
-            }).then((body) => {
-                alert("Update succeeded");
-                // TODO handle body
-            }).catch((error) => {
+    if(toShow == null)
+        h2 No instance to update 
+    else
+        - let helmetsid = toShow._id
+        - let helmets_style = toShow.helmet_style
+        - let size = toShow.size
+        - let price = toShow.price
+ 
+        div.row(class="container-fluid p-2 bg-dark text-white")
+            div.mr-1 ID is
+            div #{helmetsid}
+            - let actionid = "/resource/helmets/" + helmetsid
+            form(id='helmetsForm', action= actionid, method="PUT", class="p-2 bg-dark flex-fill")
+                div.form-group(class="p-2 text-white flex-fill")
+                    label.helmetsAttr(for='helmets_style', style="width: 120px") helmets_style
+                    input#helmets_style(type='text', name='helmets_style', value= helmets_style )
+                div.form-group(class="p-2 text-white flex-fill")
+                    label.helmetsAttr(for='size', style="width: 120px") size
+                    input#size(type='text', name='size', value= size )
+                div.form-group(class="p-2 text-white flex-fill")
+                    label.helmetsAttr(for='price', style="width: 120px") price
+                    input#price(type='number', name='price', value= price )
+                input(type="submit", class="btn btn-primary m-2")
+        script.
+            document.forms['helmetsForm'].addEventListener('submit', (event) => {
+                event.preventDefault();
+                // TODO do something here to show user that form is being submitted
+                fetch(event.target.action, {
+                    method: 'PUT',
+                    body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+                }).then((resp) => {
+                    return resp.json(); // or resp.text() or whatever the server sends
+                }).then((body) => {
+                    alert("Update succeded")
+                    // TODO handle body
+                }).catch((error) => {
                 // TODO handle error
-                alert("Update failed: " + error);
+                alert("Update failed " + error )
+                });
             });
-        });

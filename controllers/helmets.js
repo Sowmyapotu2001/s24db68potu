@@ -194,7 +194,7 @@ exports.helmets_update_Page = async function(req, res) {
 exports.helmets_delete_Page = async function(req, res) {
     console.log("Delete view for id " + req.query.id)
     try{
-    result = await Bank.findById(req.query.id)
+    result = await helmets.findById(req.query.id)
     res.render('helmetsdelete', { title: 'helmets Delete', toShow:
     result });
     }
