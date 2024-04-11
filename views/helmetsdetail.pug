@@ -1,0 +1,22 @@
+extends layout
+
+block content
+    h1= title
+    - let helmetsid = toShow._id
+    - let helmets_style = toShow.helmet_style
+    - let size = toShow.size
+    - let price = toShow.price
+    
+    div
+        div.row
+            div(class='helmetsAttr mr-3') helmets ID is:
+            div #{helmetsid}
+        div.row
+            div(class='helmetsAttr mr-3') helmets style is:
+            div #{helmets_style}
+        div.row
+            div(class='helmetsAttr mr-3') helmets size is:
+            div #{size}
+        div.row
+            div(class='helmetsAttr mr-3') helmets price is:
+            div #{price}

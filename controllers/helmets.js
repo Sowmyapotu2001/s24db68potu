@@ -79,9 +79,22 @@ exports.helmets_create_post = async function(req, res) {
 
 
 // Handle helmet delete from on DELETE.
-exports.helmets_delete = function(req, res) {
-res.send('NOT IMPLEMENTED: helmets delete DELETE ' + req.params.id);
-};
+// exports.helmets_delete = function(req, res) {
+// res.send('NOT IMPLEMENTED: helmets delete DELETE ' + req.params.id);
+// };
+
+exports.helmets_delete = async function(req, res) {
+    console.log("delete " + req.params.id)
+    try {
+    result = await helmets.findByIdAndDelete( req.params.id)
+    console.log("Removed " + result)
+    res.send(result)
+    } catch (err) {
+    res.status(500)
+    res.send(`{"error": Error deleting ${err}}`);
+    }
+    };
+    
 // Handle helmet update form on PUT.
 // exports.helmets_update_put = function(req, res) {
 // res.send('NOT IMPLEMENTED: helmets update PUT' + req.params.id);
@@ -119,3 +132,74 @@ exports.helmets_view_all_Page = async function(req, res) {
     res.send(`{"error": ${err}}`);
     } 
    };
+
+
+   exports.helmets_view_one_Page = async function(req, res) {
+    console.log("single view for id " + req.query.id)
+    try{
+    result = await helmets.findById( req.query.id)
+    res.render('helmetsdetail',
+    { title: 'helmets Detail', toShow: result });
+    }
+    catch(err){
+    res.status(500)
+    res.send(`{'error': '${err}'}`);
+    }
+    };
+
+
+    // VIEWS
+// Handle a show all view
+exports.helmets_view_all_Page = async function(req, res) {
+    try{
+    thehelmets = await helmets.find();
+    res.render('helmets', { title: 'helmets Search Results', results: thehelmets });
+    }
+    catch(err){
+    res.status(500);
+    res.send(`{"error": ${err}}`);
+    } 
+   };
+
+
+// Handle building the view for creating a Bank.
+// No body, no in path parameter, no query.
+// Does not need to be async
+exports.helmets_create_Page = function(req, res) {
+    console.log("create view")
+    try{
+    res.render('helmetscreate', { title: 'helmets Create'});
+    }
+    catch(err){
+    res.status(500)
+    res.send(`{'error': '${err}'}`);
+    }
+    };
+
+// Handle building the view for updating a Bank.
+// query provides the id
+exports.helmets_update_Page = async function(req, res) {
+    console.log("update view for item "+req.query.id)
+    try{
+    let result = await helmets.findById(req.query.id)
+    res.render('helmetsupdate', { title: 'helmets Update', toShow: result });
+    }
+    catch(err){
+    res.status(500)
+    res.send(`{'error': '${err}'}`);
+    }
+    };
+    
+// Handle a delete one view with id from query
+exports.helmets_delete_Page = async function(req, res) {
+    console.log("Delete view for id " + req.query.id)
+    try{
+    result = await Bank.findById(req.query.id)
+    res.render('helmetsdelete', { title: 'helmets Delete', toShow:
+    result });
+    }
+    catch(err){
+    res.status(500)
+    res.send(`{'error': '${err}'}`);
+    }
+    };

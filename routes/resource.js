@@ -15,6 +15,8 @@ router.delete('/helmets/:id', helmets_controller.helmets_delete);
 router.put('/helmets/:id', helmets_controller.helmets_update_put);
 // GET request for one Costume.
 router.get('/helmets/:id', helmets_controller.helmets_detail);
-// GET request for list of all Costume items.
+// GET request for list of all helmets.
 router.get('/helmets', helmets_controller.helmets_list);
+
+//router.get('/detail', helmets_controlers.helmets_view_one_Page);
 module.exports = router;
