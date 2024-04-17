@@ -21,6 +21,11 @@ router.get('/update', helmets_controller.helmets_update_Page);
 /* GET delete Bank page */
 router.get('/delete', helmets_controller.helmets_delete_Page);
 
+
+router.get('/update',helmets_controller.helmets_update_Page);
+
+
+
 module.exports = router;
 
 
